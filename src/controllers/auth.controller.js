@@ -140,3 +140,24 @@ export const login = async (req, res) => {
         });
     }
 }
+
+export const getMe = async (req, res) => {
+     
+    const userId = req.user.id;
+
+    
+        const user = await User.findById(userId).select('-password');
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found',
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: 'User retrieved successfully',
+            user
+        });
+    
+    }
