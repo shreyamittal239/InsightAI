@@ -2,12 +2,16 @@ import { useState ,  } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../hook/useAuth.js";
 import {useNavigate} from "react-router-dom";
-
+import {useSelector}  from "react-redux"
+import {Navigate} from "react-router-dom"
 
 const Login = () => {
 
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
+
+    const  {user} = useSelector(state => state.auth)
+    const {loading} = useSelector(state => state.auth)
 
     const [formData, setFormData] = useState({
         email: "",
@@ -33,6 +37,10 @@ const Login = () => {
 
         await handleLogin(payload);
         navigate("/"); // Redirect to the dashboard after successful login
+    }
+
+    if(!loading && user){
+        return <Navigate to ='/' />
     }
 
     return (
