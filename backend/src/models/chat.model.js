@@ -13,34 +13,7 @@ const chatSchema = new mongoose.Schema(
       trim: true,
       default: "New Chat",
     },
-    type: {
-      type: String,
-      enum: ["assistant", "research", "browse"],
-      default: "assistant",
-    },
-    status: {
-      type: String,
-      enum: ["active", "archived", "deleted"],
-      default: "active",
-    },
-    tags: [
-      {
-        type: String,
-        trim: true,
-      },
-    ],
-    messageCount: {
-      type: Number,
-      default: 0,
-    },
-    lastMessageAt: {
-      type: Date,
-      default: Date.now,
-    },
-    isPinned: {
-      type: Boolean,
-      default: false,
-    },
+   
   },
   { timestamps: true }
 );
